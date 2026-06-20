@@ -16,8 +16,7 @@
     }
     .bg-custom-green { background-color: #0b4f3b; }
     .text-custom-green { color: #0b4f3b; }
-    .border-custom-gold { border-color: #dfb76c; }
-    .card-shadow { box-shadow: 0 10px 30px rgba(11, 79, 59, 0.04); }
+    .card-shadow { box-shadow: 0 10px 25px rgba(11, 79, 59, 0.04); }
     
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -25,215 +24,224 @@
 </head>
 <body class="text-gray-800 antialiased">
 
-  <!-- Top Brand Navigation Bar -->
-  <nav class="bg-custom-green text-white px-4 py-3 shadow-md border-b border-yellow-600/20">
+  <!-- Main Brand Header Navbar Bar -->
+  <nav class="bg-custom-green text-white px-4 py-3 shadow-md">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
       <div class="flex items-center space-x-2">
-        <div class="bg-gradient-to-tr from-amber-400 to-amber-200 p-1.5 rounded-xl text-emerald-950 font-bold text-xs shadow-inner">
-          <i class="fa-solid fa-gem animate-pulse"></i>
+        <div class="bg-gradient-to-tr from-amber-400 to-amber-200 p-1.5 rounded-xl text-emerald-950 font-bold text-xs">
+          <i class="fa-solid fa-gem"></i>
         </div>
-        <span class="text-lg font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-amber-100 to-white">friendly</span>
+        <span class="text-base font-bold tracking-wide text-amber-100">friendly Kitty Tracker</span>
       </div>
       
-      <div class="flex items-center space-x-3">
-        <select id="globalMonthSelector" onchange="window.handleMonthChange(this.value)" class="bg-emerald-900/90 text-amber-200 text-xs rounded-xl px-2.5 py-1.5 border border-amber-500/40 focus:outline-none font-semibold cursor-pointer shadow-sm">
+      <div>
+        <select id="globalMonthSelector" onchange="window.handleMonthChange(this.value)" class="bg-emerald-900 text-amber-200 text-xs rounded-xl px-2.5 py-1.5 border border-amber-500/30 focus:outline-none font-bold cursor-pointer">
           <option value="2026_06">June 2026</option>
           <option value="2026_07">July 2026</option>
-          <option value="2026_08">Aug 2026</option>
+          <option value="2026_08">August 2026</option>
         </select>
-        <img src="https://ui-avatars.com/api/?name=Admin&background=dfb76c&color=0b4f3b&bold=true" class="w-8 h-8 rounded-xl border-2 border-amber-400/60 shadow-sm">
       </div>
     </div>
   </nav>
 
-  <!-- ALWAYS VISIBLE SUB-NAVBAR TABS (Works on Desktop, Mobile, & Minimized Windows) -->
-  <div class="bg-white border-b border-amber-100 sticky top-0 z-40 shadow-sm">
-    <div class="max-w-7xl mx-auto flex justify-around sm:justify-start sm:space-x-12 px-2 text-center">
-      <button onclick="window.switchTab('home')" id="tab-btn-home" class="py-3 px-3 text-xs sm:text-sm font-bold text-amber-600 border-b-4 border-amber-500 transition duration-200 flex items-center gap-1.5 focus:outline-none">
-        <i class="fa-solid fa-house"></i> Home
+  <!-- Navigation Menu Tabs (Always visible on all mobile/minimized screens) -->
+  <div class="bg-white border-b border-amber-100 sticky top-0 z-40 shadow-xs">
+    <div class="max-w-7xl mx-auto flex justify-around px-2 font-semibold">
+      <button onclick="window.switchTab('home')" id="tab-btn-home" class="py-3 px-4 text-xs sm:text-sm text-amber-600 border-b-4 border-amber-500 transition flex items-center gap-1 focus:outline-none">
+        <i class="fa-solid fa-table-columns"></i> Dashboard
       </button>
-      <button onclick="window.switchTab('payments')" id="tab-btn-payments" class="py-3 px-3 text-xs sm:text-sm font-semibold text-gray-500 hover:text-custom-green transition duration-200 flex items-center gap-1.5 focus:outline-none">
-        <i class="fa-solid fa-wallet"></i> Payments
+      <button onclick="window.switchTab('payments')" id="tab-btn-payments" class="py-3 px-4 text-xs sm:text-sm text-gray-500 hover:text-custom-green transition flex items-center gap-1 focus:outline-none">
+        <i class="fa-solid fa-money-check-dollar"></i> Payment List
       </button>
-      <button onclick="window.switchTab('schedule')" id="tab-btn-schedule" class="py-3 px-3 text-xs sm:text-sm font-semibold text-gray-500 hover:text-custom-green transition duration-200 flex items-center gap-1.5 focus:outline-none">
-        <i class="fa-solid fa-calendar"></i> Rotation
+      <button onclick="window.switchTab('schedule')" id="tab-btn-schedule" class="py-3 px-4 text-xs sm:text-sm text-gray-500 hover:text-custom-green transition flex items-center gap-1 focus:outline-none">
+        <i class="fa-solid fa-calendar-days"></i> Host Order
       </button>
     </div>
   </div>
 
-  <!-- Main Content Body Grid Frame -->
+  <!-- Central Dynamic Panel Grid Content -->
   <main class="max-w-7xl mx-auto px-4 py-6">
     
-    <!-- Dashboard Reactive Meta Header Header Section -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4 bg-white/60 p-4 rounded-2xl border border-amber-100 card-shadow">
+    <!-- Meta Dynamic Title Header Card Block Component -->
+    <div class="mb-6 bg-white p-4 rounded-2xl border border-amber-100 card-shadow flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
       <div>
-        <h1 class="text-xl md:text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-2">
-          Kitty Dashboard <span class="text-gray-300 font-light">|</span> <span class="font-medium text-gray-600 text-lg sm:text-xl" id="dashboard-subtitle">Gems of Hyderabad</span>
+        <h1 class="text-lg font-bold text-gray-900 flex items-center gap-1.5">
+          Gems of Hyderabad <span class="text-gray-300 font-light">|</span> <span class="text-gray-600 font-medium text-sm sm:text-base">Kitty Dashboard</span>
         </h1>
-        <p class="text-xs text-amber-800 font-medium mt-0.5 flex items-center gap-1">
-          <i class="fa-solid fa-circle text-[8px] text-emerald-600 animate-ping"></i> Live Data Partition: <span id="currentSelectedMonthText" class="font-bold underline">June 2026</span>
+        <p class="text-xs text-amber-800 font-medium mt-0.5">
+          Viewing Month: <span id="currentSelectedMonthText" class="font-bold underline">June 2026</span>
         </p>
       </div>
-      <button onclick="window.openModal()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-800 to-custom-green hover:brightness-110 text-white font-semibold py-2.5 px-5 rounded-xl transition text-xs flex items-center justify-center shadow-md">
-        <i class="fa-solid fa-plus mr-2"></i> Add / Edit Member Payment
+      <button onclick="window.openModal()" class="w-full sm:w-auto bg-custom-green hover:bg-opacity-95 text-white font-semibold py-2 px-4 rounded-xl text-xs flex items-center justify-center shadow-sm">
+        <i class="fa-solid fa-plus mr-1.5"></i> Update / Add Payment
       </button>
     </div>
 
-    <!-- VIEW 1: HOME GRID PANEL -->
+    <!-- TAB VIEW 1: HOME (CARDS ONLY ARCHITECTURE) -->
     <div id="view-home" class="tab-content active">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- Left Side Cards Block -->
-        <div class="lg:col-span-4 space-y-6">
-          <!-- Next Party Info Card Grid Layout Block Component -->
-          <div class="bg-white rounded-2xl p-5 border border-amber-200/60 card-shadow relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-400 to-yellow-200"></div>
-            <div class="flex justify-between items-center mb-4">
-              <h2 class="text-sm font-bold uppercase tracking-wider text-gray-400 flex items-center gap-2"><i class="fa-solid fa-circle-info text-custom-green"></i> Month's Host Info</h2>
-              <button onclick="window.openPartyModal()" class="text-xs text-custom-green font-semibold bg-emerald-50 px-2 py-1 rounded-lg hover:bg-emerald-100 transition"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
-            </div>
-            <div class="space-y-3.5 text-sm bg-stone-50/70 p-3.5 rounded-xl border border-stone-100">
-              <div class="flex justify-between"><span class="text-gray-500">Party Date</span><span class="font-bold text-gray-900" id="display-party-date">—</span></div>
-              <div class="flex justify-between"><span class="text-gray-500">Primary Host</span><span class="font-bold text-custom-green" id="display-party-host">—</span></div>
-              <div class="flex flex-col pt-2 border-t border-dashed border-gray-200">
-                <span class="text-gray-500 text-xs mb-0.5">Assigned Venue Location</span>
-                <span class="font-medium text-gray-800" id="display-party-loc">—</span>
-              </div>
-            </div>
+        <!-- CARD A: Host Information Summary Card -->
+        <div class="bg-white rounded-2xl p-5 border border-amber-200/60 card-shadow relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-amber-200"></div>
+          <div class="flex justify-between items-center mb-3">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1.5"><i class="fa-solid fa-user-tie text-custom-green"></i> Month's Host</h2>
+            <button onclick="window.openPartyModal()" class="text-xs text-custom-green font-bold bg-emerald-50 px-2 py-1 rounded-lg hover:bg-emerald-100 transition"><i class="fa-solid fa-pencil"></i> Change</button>
           </div>
-          
-          <!-- Shared Compact Helper Banner Widget -->
-          <div class="bg-gradient-to-br from-emerald-900 to-custom-green rounded-2xl p-5 text-white shadow-lg relative overflow-hidden">
-            <div class="absolute -right-6 -bottom-6 text-emerald-800/20 text-7xl transform rotate-12"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-            <h3 class="text-sm font-bold text-amber-300 uppercase tracking-wider mb-1">Active Rotation Protocol</h3>
-            <p class="text-xs text-emerald-100 leading-relaxed">Every member contributes their exact matching shares directly to the assigned host profile using the select menu timeline tracker above.</p>
+          <div class="space-y-2.5 text-xs bg-stone-50/70 p-3 rounded-xl border border-stone-100">
+            <div class="flex justify-between"><span class="text-gray-500">Party Date:</span><span class="font-bold text-gray-900" id="display-party-date">—</span></div>
+            <div class="flex justify-between"><span class="text-gray-500">Party Host:</span><span class="font-bold text-custom-green text-sm" id="display-party-host">—</span></div>
+            <div class="flex flex-col pt-2 border-t border-dashed border-gray-200">
+              <span class="text-gray-400 font-medium mb-0.5">Venue Location:</span>
+              <span class="font-semibold text-gray-800" id="display-party-loc">—</span>
+            </div>
           </div>
         </div>
 
-        <!-- Center Shared Payment Block Interface Placement Node Column -->
-        <div class="lg:col-span-8" id="shared-payments-card-container"></div>
+        <!-- CARD B: Compact Total Status Card (Relocates here cleanly dynamically) -->
+        <div class="bg-white rounded-2xl p-5 border border-amber-200/60 card-shadow relative overflow-hidden flex flex-col justify-between" id="compact-status-card">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-600 to-custom-green"></div>
+          <div>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-1.5"><i class="fa-solid fa-chart-pie text-custom-green"></i> Collection Summary</h2>
+            <div class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 text-center space-y-1">
+              <p class="text-xs font-semibold text-emerald-800" id="member-count">Paid Status: 0 / 0</p>
+              <h3 class="text-2xl font-black text-custom-green" id="total-paid">₹0</h3>
+              <p class="text-[10px] text-gray-400">Total Money Collected For Host</p>
+            </div>
+          </div>
+          <button onclick="window.switchTab('payments')" class="w-full mt-3 bg-stone-100 text-stone-700 hover:bg-stone-200 font-bold py-2 rounded-xl text-xs text-center transition">
+            View Complete Member List <i class="fa-solid fa-arrow-right ml-1"></i>
+          </button>
+        </div>
+
+        <!-- CARD C: Simple Guideline Information Rules Card -->
+        <div class="bg-gradient-to-br from-emerald-950 to-custom-green text-white rounded-2xl p-5 card-shadow relative overflow-hidden flex flex-col justify-center">
+          <div class="absolute -right-4 -bottom-4 text-emerald-900/30 text-6xl"><i class="fa-solid fa-circle-question"></i></div>
+          <h3 class="text-xs font-bold text-amber-300 uppercase tracking-wider mb-1">How it works:</h3>
+          <p class="text-xs text-emerald-100 leading-relaxed">
+            Each month, one member hosts the party. Every member pays their party amount directly to that month's host. Use the list view to check off payments!
+          </p>
+        </div>
 
       </div>
     </div>
 
-    <!-- VIEW 2: PAYMENTS TAB VIEW -->
+    <!-- TAB VIEW 2: USEFUL & COMPACT PAYMENT CHECKLIST LEDGER -->
     <div id="view-payments" class="tab-content">
-      <div class="max-w-5xl mx-auto" id="isolated-payments-container">
-        
-        <!-- Interactive Ledger Data Matrix Panel Card Component Container -->
-        <div class="bg-white rounded-2xl p-4 sm:p-6 border border-amber-200/60 card-shadow relative overflow-hidden" id="payments-main-card">
-          <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-custom-green to-emerald-600"></div>
-          
-          <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-5 pb-3 border-b border-gray-100 gap-3">
-            <div>
-              <h2 class="text-base font-bold text-gray-900 flex items-center gap-2">Payment Status Matrix - <span id="tableMonthTitle" class="text-custom-green font-extrabold">June 2026 Cycle</span></h2>
-              <p class="text-xs text-gray-400 mt-0.5">Live records streaming from Firebase Realtime Engine.</p>
-            </div>
-            <span class="text-xs bg-emerald-50 text-custom-green px-3 py-1.5 rounded-xl border border-emerald-100 font-bold self-start sm:self-auto" id="member-count">Paid: 0 / Total: 0</span>
+      <div class="max-w-3xl mx-auto bg-white rounded-2xl p-4 sm:p-6 border border-amber-200/60 card-shadow">
+        <div class="border-b border-gray-100 pb-3 mb-4 flex justify-between items-center">
+          <div>
+            <h2 class="text-sm font-bold text-gray-900">Who Has Paid?</h2>
+            <p class="text-xs text-gray-400">Click the pencil icon to modify status logs instantly.</p>
           </div>
-
-          <div class="overflow-x-auto rounded-xl border border-gray-100">
-            <table class="w-full text-left border-collapse text-sm">
-              <thead>
-                <tr class="text-xs font-bold text-gray-400 uppercase bg-stone-50 border-b border-gray-100">
-                  <th class="p-3">Member Details</th>
-                  <th class="p-3 text-center">Status</th>
-                  <th class="p-3">Date Settled</th>
-                  <th class="p-3 text-right">Amount Given</th>
-                  <th class="p-3 text-center">Action Panel</th>
-                </tr>
-              </thead>
-              <tbody id="payments-tbody" class="divide-y divide-gray-50 font-medium text-gray-700">
-                <!-- Dynamically populated or setup default fallback datasets row elements inject cleanly -->
-              </tbody>
-            </table>
-          </div>
-
-          <div class="mt-5 pt-4 border-t border-gray-100 flex justify-between items-center bg-stone-50/50 p-3 rounded-xl">
-            <span class="text-xs sm:text-sm text-gray-500 font-semibold flex items-center gap-1"><i class="fa-solid fa-calculator text-custom-green"></i> Collected Pool Accumulation</span>
-            <span class="font-extrabold text-base sm:text-lg text-gray-900">Total Received: <span class="text-custom-green" id="total-paid">₹0</span></span>
-          </div>
+          <span id="tableMonthTitle" class="text-xs bg-amber-50 text-amber-800 font-bold px-3 py-1 rounded-lg border border-amber-200">June 2026</span>
         </div>
 
+        <div class="overflow-x-auto rounded-xl border border-gray-100">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="font-bold text-gray-400 bg-stone-50 border-b border-gray-100">
+                <th class="p-3">Member</th>
+                <th class="p-3 text-center">Status</th>
+                <th class="p-3">Date Paid</th>
+                <th class="p-3 text-right">Amount</th>
+                <th class="p-3 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="payments-tbody" class="divide-y divide-gray-50 font-medium text-gray-700">
+              <!-- Instantly loaded from firebase -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
 
-    <!-- VIEW 3: ROTATION TIMELINE PLANNER -->
+    <!-- TAB VIEW 3: SIMPLIFIED HOST SCHEDULE LIST -->
     <div id="view-schedule" class="tab-content">
-      <div class="bg-white rounded-2xl p-8 border border-amber-200/60 card-shadow max-w-2xl mx-auto text-center py-12">
-        <div class="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4 border border-amber-200">
-          <i class="fa-solid fa-arrow-rotate-left text-2xl text-amber-500"></i>
+      <div class="max-w-xl mx-auto bg-white rounded-2xl p-5 border border-amber-200/60 card-shadow">
+        <h2 class="text-sm font-bold text-gray-900 border-b border-gray-100 pb-2 mb-4"><i class="fa-solid fa-hourglass-half text-amber-500 mr-1.5"></i> Year Hosting Schedule Order</h2>
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between p-3 bg-emerald-50/50 rounded-xl border border-emerald-100">
+            <span class="text-xs font-bold text-custom-green">June 2026</span>
+            <span class="text-xs font-bold text-gray-800">Megha Sharma (Current)</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-stone-50 rounded-xl border border-stone-100">
+            <span class="text-xs font-medium text-gray-500">July 2026</span>
+            <span class="text-xs font-semibold text-gray-700">Priya Gupta</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-stone-50 rounded-xl border border-stone-100">
+            <span class="text-xs font-medium text-gray-500">August 2026</span>
+            <span class="text-xs font-semibold text-gray-700">Lakshmi Reddy</span>
+          </div>
         </div>
-        <h3 class="text-lg font-bold text-gray-900 mb-1">Monthly Rotation Timeline Tracker</h3>
-        <p class="text-sm text-gray-500 max-w-md mx-auto leading-relaxed">Modify selection parameters inside the application navbar context dropdown to see alternative monthly ledgers instantly.</p>
       </div>
     </div>
 
   </main>
 
-  <!-- MODAL A: Member Record Update Input Form Overlay -->
+  <!-- MODAL: Easy Edit/Add Popup Entry Interface Window Overlay Box -->
   <div id="recordModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4 z-50 backdrop-blur-xs">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative border border-amber-100">
-      <h3 class="text-base font-bold text-gray-900 mb-4 flex items-center gap-2 border-b border-gray-100 pb-2" id="modalTitle">Update Payment Status</h3>
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl relative">
+      <h3 class="text-sm font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2" id="modalTitle">Update Status</h3>
       <input type="hidden" id="memberId">
       
-      <div class="space-y-4">
+      <div class="space-y-3.5 text-xs">
         <div>
-          <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-wider">Member Full Name</label>
-          <input type="text" id="memberName" placeholder="e.g., Megha Sharma" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green transition bg-stone-50/50">
+          <label class="block font-bold text-gray-400 uppercase mb-1">Member Name</label>
+          <input type="text" id="memberName" placeholder="e.g., Sangeetha" class="w-full border border-gray-200 rounded-xl p-2.5 focus:outline-none focus:border-custom-green bg-stone-50/50 font-medium text-gray-800">
         </div>
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-2 gap-3">
           <div>
-            <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-wider">Status Field</label>
-            <select id="memberStatus" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green bg-stone-50/50">
-              <option value="Paid">Paid</option>
-              <option value="Pending">Pending</option>
+            <label class="block font-bold text-gray-400 uppercase mb-1">Status</label>
+            <select id="memberStatus" class="w-full border border-gray-200 rounded-xl p-2.5 focus:outline-none focus:border-custom-green bg-stone-50/50 font-bold">
+              <option value="Paid">Paid ✅</option>
+              <option value="Pending">Pending ⏳</option>
             </select>
           </div>
           <div>
-            <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-wider">Amount Paid (₹)</label>
-            <input type="number" id="memberAmount" placeholder="15000" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green bg-stone-50/50">
+            <label class="block font-bold text-gray-400 uppercase mb-1">Amount (₹)</label>
+            <input type="number" id="memberAmount" placeholder="15000" class="w-full border border-gray-200 rounded-xl p-2.5 focus:outline-none focus:border-custom-green bg-stone-50/50 font-semibold">
           </div>
         </div>
         <div>
-          <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-wider">Date Fixed Context</label>
-          <input type="text" id="memberDate" placeholder="e.g., 06/12" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green bg-stone-50/50">
+          <label class="block font-bold text-gray-400 uppercase mb-1">Date Paid (Optional)</label>
+          <input type="text" id="memberDate" placeholder="e.g., 06/15" class="w-full border border-gray-200 rounded-xl p-2.5 focus:outline-none focus:border-custom-green bg-stone-50/50">
         </div>
       </div>
 
-      <div class="flex justify-end space-x-3 mt-6 pt-3 border-t border-gray-100">
-        <button onclick="window.closeModal()" class="px-4 py-2 border border-gray-200 rounded-xl text-xs font-semibold text-gray-500 hover:bg-gray-50 focus:outline-none">Cancel</button>
-        <button id="btnSave" class="px-4 py-2 bg-custom-green hover:brightness-110 text-white rounded-xl text-xs font-semibold shadow-sm focus:outline-none">Save Changes</button>
+      <div class="flex justify-end space-x-2.5 mt-5 pt-2.5 border-t border-gray-100 text-xs font-bold">
+        <button onclick="window.closeModal()" class="px-3 py-2 border border-gray-200 rounded-xl text-gray-500 hover:bg-gray-50">Cancel</button>
+        <button id="btnSave" class="px-3 py-2 bg-custom-green text-white rounded-xl shadow-xs">Save Update</button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL B: Host Mutate Information Form Overlay Overlay -->
+  <!-- MODAL B: Host Configuration Overlay Window Box -->
   <div id="partyModal" class="fixed inset-0 bg-black/60 hidden items-center justify-center p-4 z-50 backdrop-blur-xs">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl relative border border-amber-100">
-      <h3 class="text-base font-bold text-gray-900 mb-4 flex items-center gap-2 border-b border-gray-100 pb-2">Modify Host Parameters</h3>
-      <div class="space-y-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl relative">
+      <h3 class="text-sm font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2">Change Monthly Host Info</h3>
+      <div class="space-y-3.5 text-xs">
         <div>
-          <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-wider">Assigned Party Date</label>
-          <input type="text" id="inputPartyDate" placeholder="e.g., Sat, June 18, 2026" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green bg-stone-50/50">
+          <label class="block font-bold text-gray-400 uppercase mb-1">Party Date</label>
+          <input type="text" id="inputPartyDate" class="w-full border border-gray-200 rounded-xl p-2.5 focus:outline-none focus:border-custom-green bg-stone-50/50">
         </div>
         <div>
-          <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-wider">Host Member Name</label>
-          <input type="text" id="inputPartyHost" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green bg-stone-50/50">
+          <label class="block font-bold text-gray-400 uppercase mb-1">Host Member Name</label>
+          <input type="text" id="inputPartyHost" class="w-full border border-gray-200 rounded-xl p-2.5 focus:outline-none focus:border-custom-green bg-stone-50/50">
         </div>
         <div>
-          <label class="block text-xs font-bold text-gray-400 uppercase mb-1 tracking-wider">Party Location Venue</label>
-          <input type="text" id="inputPartyLoc" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green bg-stone-50/50">
+          <label class="block font-bold text-gray-400 uppercase mb-1">Party Location Venue</label>
+          <input type="text" id="inputPartyLoc" class="w-full border border-gray-200 rounded-xl p-2.5 focus:outline-none focus:border-custom-green bg-stone-50/50">
         </div>
       </div>
-      <div class="flex justify-end space-x-3 mt-6 pt-3 border-t border-gray-100">
-        <button onclick="window.closePartyModal()" class="px-4 py-2 border border-gray-200 rounded-xl text-xs font-semibold text-gray-500 hover:bg-gray-50 focus:outline-none">Cancel</button>
-        <button id="btnSaveParty" class="px-4 py-2 bg-custom-green hover:brightness-110 text-white rounded-xl text-xs font-semibold shadow-sm focus:outline-none">Save Settings</button>
+      <div class="flex justify-end space-x-2.5 mt-5 pt-2.5 border-t border-gray-100 text-xs font-bold">
+        <button onclick="window.closePartyModal()" class="px-3 py-2 border border-gray-200 rounded-xl text-gray-500 hover:bg-gray-50">Cancel</button>
+        <button id="btnSaveParty" class="px-3 py-2 bg-custom-green text-white rounded-xl shadow-xs">Save Settings</button>
       </div>
     </div>
   </div>
 
-  <!-- Realtime Database Module Engine Integration Routing -->
+  <!-- Realtime Database Script Setup Engine Logic -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, push, update, remove, onValue, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
@@ -256,8 +264,6 @@
     let unsubscribeMembers = null;
     let unsubscribeParty = null;
 
-    // AUTOMATED INITIALIZATION HOOK
-    // Automatically sets up live datasets for a newly initialized month branch so it's not blank
     function seedFallbackDataIfEmpty(snapshot) {
       if (!snapshot.exists()) {
         const initialMembers = {
@@ -282,7 +288,7 @@
       const selectorElement = document.getElementById('globalMonthSelector');
       const selectedText = selectorElement.options[selectorElement.selectedIndex].text;
       document.getElementById('currentSelectedMonthText').innerText = selectedText;
-      document.getElementById('tableMonthTitle').innerText = `${selectedText} Cycle`;
+      document.getElementById('tableMonthTitle').innerText = selectedText;
       syncDatabaseForMonth();
     };
 
@@ -293,7 +299,6 @@
       const membersRef = ref(db, `months/${currentMonthKey}/members`);
       const partyRef = ref(db, `months/${currentMonthKey}/party_info`);
 
-      // Seed setup trigger validation check
       onValue(ref(db, `months/${currentMonthKey}`), seedFallbackDataIfEmpty, { onlyOnce: true });
 
       unsubscribeParty = onValue(partyRef, (snapshot) => {
@@ -325,34 +330,32 @@
             }
 
             const row = document.createElement('tr');
-            row.className = isPaid ? "bg-emerald-50/50 font-medium text-gray-900 border-b border-gray-100" : "hover:bg-stone-50 border-b border-gray-100";
+            row.className = "border-b border-gray-100 hover:bg-stone-50/80";
             
             row.innerHTML = `
-              <td class="p-3 flex items-center space-x-3">
-                <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=0b4f3b&color=fff&bold=true" class="w-8 h-8 rounded-xl shadow-xs">
-                <span class="font-semibold text-gray-800">${item.name}</span>
+              <td class="p-3">
+                <span class="font-bold text-gray-800">${item.name}</span>
               </td>
               <td class="p-3 text-center">
-                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold ${isPaid ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
-                  <i class="${isPaid ? 'fa-solid fa-circle-check' : 'fa-solid fa-clock'}"></i> ${item.status}
+                <span class="inline-block px-2 py-0.5 rounded-full text-[11px] font-bold ${isPaid ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                  ${isPaid ? 'Paid' : 'Pending'}
                 </span>
               </td>
-              <td class="p-3 text-gray-500 text-xs">${item.date || '—'}</td>
+              <td class="p-3 text-gray-400 text-xs">${item.date || '—'}</td>
               <td class="p-3 text-right font-bold text-gray-900">₹${amountNum.toLocaleString('en-IN')}</td>
-              <td class="p-3 text-center space-x-3">
-                <button onclick="window.editRecord('${key}', '${item.name}', '${item.status}', '${item.date || ''}', ${amountNum})" class="text-custom-green hover:text-amber-600 transition p-1"><i class="fa-solid fa-pen-to-square"></i></button>
-                <button onclick="window.deleteRecord('${key}')" class="text-rose-600 hover:text-rose-800 transition p-1"><i class="fa-solid fa-trash-can"></i></button>
+              <td class="p-3 text-center space-x-2">
+                <button onclick="window.editRecord('${key}', '${item.name}', '${item.status}', '${item.date || ''}', ${amountNum})" class="text-custom-green hover:text-amber-600"><i class="fa-solid fa-pen-to-square"></i></button>
+                <button onclick="window.deleteRecord('${key}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash-can"></i></button>
               </td>
             `;
             tbody.appendChild(row);
           });
         }
-        document.getElementById('member-count').innerText = `Paid Checklist: ${paidCount} / Total: ${count}`;
+        document.getElementById('member-count').innerText = `Paid Status: ${paidCount} / Total Members: ${count}`;
         document.getElementById('total-paid').innerText = `₹${totalSum.toLocaleString('en-IN')}`;
       });
     }
 
-    // Modal Scope Wireframe Exposure Assignments
     window.openModal = function() {
       document.getElementById('modalTitle').innerText = "Add / Update Member Payment";
       document.getElementById('memberId').value = "";
@@ -378,7 +381,7 @@
     };
 
     window.editRecord = function(id, name, status, date, amount) {
-      document.getElementById('modalTitle').innerText = "Modify Ledger Entry";
+      document.getElementById('modalTitle').innerText = "Edit Member Record";
       document.getElementById('memberId').value = id;
       document.getElementById('memberName').value = name;
       document.getElementById('memberStatus').value = status;
@@ -388,7 +391,7 @@
     };
 
     window.deleteRecord = function(id) {
-      if (confirm("Permanently drop this payment row from the ledger?")) {
+      if (confirm("Remove this payment entry?")) {
         remove(ref(db, `months/${currentMonthKey}/members/${id}`));
       }
     };
@@ -411,7 +414,7 @@
         amount: parseFloat(document.getElementById('memberAmount').value) || 0
       };
 
-      if (!payload.name) return alert("A member profile name is required.");
+      if (!payload.name) return alert("Please specify a name.");
 
       const targetRef = ref(db, `months/${currentMonthKey}/members`);
       if (id) {
@@ -426,31 +429,16 @@
 
   <!-- Navigation layout control routines -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const liveCard = document.getElementById('payments-main-card');
-      document.getElementById('shared-payments-card-container').appendChild(liveCard);
-    });
-
     window.switchTab = function(targetTabId) {
       document.querySelectorAll('.tab-content').forEach(view => view.classList.remove('active'));
-      document.querySelectorAll('#nav-tabs button, .sticky-nav-tabs, div button').forEach(btn => {
+      document.querySelectorAll('.sticky-nav-tabs, div button, button').forEach(btn => {
         if(btn.id && btn.id.startsWith('tab-btn-')) {
-           btn.className = "py-3 px-3 text-xs sm:text-sm font-semibold text-gray-500 hover:text-custom-green transition duration-200 flex items-center gap-1.5 focus:outline-none";
+           btn.className = "py-3 px-4 text-xs sm:text-sm font-semibold text-gray-500 hover:text-custom-green transition flex items-center gap-1 focus:outline-none";
         }
       });
 
-      document.getElementById(`tab-btn-${targetTabId}`).className = "py-3 px-3 text-xs sm:text-sm font-bold text-amber-600 border-b-4 border-amber-500 transition duration-200 flex items-center gap-1.5 focus:outline-none";
-      const liveCard = document.getElementById('payments-main-card');
-      
-      if (targetTabId === 'home') {
-        document.getElementById('shared-payments-card-container').appendChild(liveCard);
-        document.getElementById('view-home').classList.add('active');
-      } else if (targetTabId === 'payments') {
-        document.getElementById('isolated-payments-container').appendChild(liveCard);
-        document.getElementById('view-payments').classList.add('active');
-      } else if (targetTabId === 'schedule') {
-        document.getElementById('view-schedule').classList.add('active');
-      }
+      document.getElementById(`tab-btn-${targetTabId}`).className = "py-3 px-4 text-xs sm:text-sm font-bold text-amber-600 border-b-4 border-amber-500 transition flex items-center gap-1 focus:outline-none";
+      document.getElementById(`view-${targetTabId}`).classList.add('active');
     };
   </script>
 </body>
