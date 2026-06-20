@@ -155,7 +155,7 @@
         </div>
         <div>
           <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Date Paid / Text Context</label>
-          <input type="text" id="memberDate" placeholder="e.g., 11/15 or Paid 11/18 - Today!" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
+          <input type="text" id="memberDate" placeholder="e.g., 11/15 or Paid 11/18" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
         </div>
         <div>
           <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Amount (₹)</label>
@@ -172,24 +172,25 @@
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getDatabase, ref, push, set, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+    import { getDatabase, ref, push, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
+    // Your freshly provided configuration properties mapping
     const firebaseConfig = {
-      apiKey: "AIzaSyCqb7gAbpa3UabPU3g_YhNITuPWtWPY4KU",
-      authDomain: "ak-events-2016.firebaseapp.com",
-      databaseURL: "https://ak-events-2016-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "ak-events-2016",
-      storageBucket: "ak-events-2016.firebasestorage.app",
-      messagingSenderId: "78066764444",
-      appId: "1:78066764444:web:9838816e94493b4632fb59",
-      measurementId: "G-JQDWFXYV0G"
+      apiKey: "AIzaSyB6NJ0ytQbdaPDlQSo3W9jjJsekA8g1r4c",
+      authDomain: "kittyparty-29c97.firebaseapp.com",
+      databaseURL: "https://kittyparty-29c97-default-rtdb.firebaseio.com",
+      projectId: "kittyparty-29c97",
+      storageBucket: "kittyparty-29c97.firebasestorage.app",
+      messagingSenderId: "51479648055",
+      appId: "1:51479648055:web:b7ebf4ba2960c6290dacb2",
+      measurementId: "G-Q4HCX2PSYJ"
     };
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const membersRef = ref(db, 'members');
 
-    // Render Data element lists in Realtime
+    // Realtime UI Listener
     onValue(membersRef, (snapshot) => {
       const tbody = document.getElementById('payments-tbody');
       tbody.innerHTML = ""; 
@@ -232,7 +233,7 @@
       document.getElementById('total-paid').innerText = `₹${totalSum.toLocaleString('en-IN')}`;
     });
 
-    // Handle Write & Mutate Form submission 
+    // Form submission processing (Add & Modify)
     document.getElementById('btnSave').addEventListener('click', () => {
       const id = document.getElementById('memberId').value;
       const payload = {
@@ -251,7 +252,7 @@
       }
     });
 
-    // Delete handling function mapping exposed to window scope context
+    // Delete context tracking exposure
     window.deleteRecord = (id) => {
       if (confirm("Are you sure you want to remove this ledger entry?")) {
         remove(ref(db, `members/${id}`));
