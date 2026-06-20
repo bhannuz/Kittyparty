@@ -10,11 +10,10 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #fdf6ec; /* Soft warm background matching the theme */
+      background-color: #fdf6ec;
     }
     .bg-custom-green { background-color: #0d5c46; }
     .text-custom-green { color: #0d5c46; }
-    .border-custom-gold { border-color: #e5c185; }
     .card-shadow { box-shadow: 0 4px 20px rgba(13, 92, 70, 0.05); }
   </style>
 </head>
@@ -48,16 +47,19 @@
 
   <main class="max-w-7xl mx-auto px-4 py-8">
     
-    <h1 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">
-      Kitty Dashboard <span class="text-gray-400 font-light">|</span> <span class="font-medium text-gray-700">Gems of Hyderabad</span>
-    </h1>
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
+      <h1 class="text-2xl md:text-3xl font-bold text-gray-900">
+        Kitty Dashboard <span class="text-gray-400 font-light">|</span> <span class="font-medium text-gray-700">Gems of Hyderabad</span>
+      </h1>
+      <button onclick="openModal()" class="bg-custom-green hover:bg-opacity-90 text-white font-semibold py-2.5 px-5 rounded-xl transition text-sm flex items-center shadow-sm">
+        <i class="fa-solid fa-plus mr-2"></i> Add New Record
+      </button>
+    </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
       
       <div class="lg:col-span-3 space-y-6">
-        
         <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-16 h-16 opacity-5 bg-[radial-gradient(#0d5c46_1px,transparent_1px)] [background-size:8px_8px]"></div>
           <h2 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Next Party Info</h2>
           <div class="space-y-3 text-sm">
             <div class="flex justify-between"><span class="text-gray-500">Date</span><span class="font-semibold text-right">Sat, Nov 18, 2023</span></div>
@@ -74,7 +76,6 @@
 
         <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
           <h2 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Next Host Rotation</h2>
-          
           <div class="space-y-4">
             <div>
               <p class="text-xs text-gray-400 font-medium mb-2">Next in Line</p>
@@ -86,27 +87,15 @@
                 </div>
               </div>
             </div>
-
-            <div>
-              <p class="text-xs text-gray-400 font-medium mb-2">Subsequent Host</p>
-              <div class="flex items-center space-x-3 bg-stone-50 p-2 rounded-xl">
-                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=100" class="w-10 h-10 rounded-full object-cover border border-amber-200">
-                <div>
-                  <h4 class="text-sm font-semibold text-gray-800">Pooja Shah</h4>
-                  <p class="text-xs text-gray-500">Jan 2024</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-
       </div>
 
       <div class="lg:col-span-6">
         <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow h-full">
           <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
             <h2 class="text-base font-bold text-gray-900">Payment Status - Nov '23 <span class="text-sm font-normal text-gray-500">(Megha's Kitty)</span></h2>
-            <span class="text-xs bg-emerald-50 text-custom-green px-2.5 py-1 rounded-full font-semibold">Members (12)</span>
+            <span class="text-xs bg-emerald-50 text-custom-green px-2.5 py-1 rounded-full font-semibold" id="member-count">Members (0)</span>
           </div>
 
           <div class="overflow-x-auto">
@@ -117,120 +106,74 @@
                   <th class="pb-3 font-medium text-center">Paid?</th>
                   <th class="pb-3 font-medium">Date Paid</th>
                   <th class="pb-3 font-medium text-right">Amount</th>
+                  <th class="pb-3 font-medium text-center">Actions</th>
                 </tr>
               </thead>
               <tbody id="payments-tbody" class="divide-y divide-gray-50 font-medium text-gray-700">
-                <tr class="hover:bg-stone-50">
-                  <td class="py-3 flex items-center space-x-3">
-                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100" class="w-7 h-7 rounded-full object-cover">
-                    <span>Megha Sharma <span class="text-xs text-emerald-600 font-normal">(Host)</span></span>
-                  </td>
-                  <td class="py-3 text-center text-emerald-600 text-base"><i class="fa-solid fa-circle-check"></i></td>
-                  <td class="py-3 text-gray-500 text-xs">11/10</td>
-                  <td class="py-3 text-right font-semibold">₹60,000</td>
-                </tr>
-                <tr class="hover:bg-stone-50">
-                  <td class="py-3 flex items-center space-x-3">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" class="w-7 h-7 rounded-full object-cover">
-                    <span>Priya Gupta</span>
-                  </td>
-                  <td class="py-3 text-center text-emerald-600 text-base"><i class="fa-solid fa-circle-check"></i></td>
-                  <td class="py-3 text-gray-500 text-xs">11/12</td>
-                  <td class="py-3 text-right font-semibold">₹12,000</td>
-                </tr>
-                <tr class="hover:bg-stone-50">
-                  <td class="py-3 flex items-center space-x-3">
-                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=100" class="w-7 h-7 rounded-full object-cover">
-                    <span>Sangeetha</span>
-                  </td>
-                  <td class="py-3 text-center text-emerald-600 text-base"><i class="fa-solid fa-circle-check"></i></td>
-                  <td class="py-3 text-gray-400 text-xs">Paid 11/13</td>
-                  <td class="py-3 text-right font-semibold">₹13,000</td>
-                </tr>
-                <tr class="bg-emerald-50/60 font-semibold border-y border-emerald-100/70">
-                  <td class="py-3 flex items-center space-x-3 pl-2">
-                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100" class="w-7 h-7 rounded-full object-cover">
-                    <span>Pooja S.</span>
-                  </td>
-                  <td class="py-3 text-center text-emerald-600 text-base"><i class="fa-solid fa-circle-check"></i></td>
-                  <td class="py-3 text-emerald-700 text-xs">Paid 11/18 - Today!</td>
-                  <td class="py-3 text-right text-emerald-800 font-bold">₹18,000</td>
-                </tr>
-                <tr class="hover:bg-stone-50">
-                  <td class="py-3 flex items-center space-x-3">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" class="w-7 h-7 rounded-full object-cover">
-                    <span>Kiran</span>
-                  </td>
-                  <td class="py-3 text-center text-amber-500 text-xs font-semibold uppercase tracking-wider">Pending</td>
-                  <td class="py-3 text-gray-400 text-xs">—</td>
-                  <td class="py-3 text-right font-semibold text-amber-600">₹20,000</td>
-                </tr>
-              </tbody>
+                </tbody>
             </table>
           </div>
 
           <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center text-sm">
             <span class="text-gray-500 font-medium">Collection Progress</span>
-            <span class="font-bold text-gray-900">Total Paid: <span class="text-custom-green">₹60,000</span> / <span class="text-gray-400 font-normal">1,20,000</span></span>
+            <span class="font-bold text-gray-900">Total Paid: <span class="text-custom-green" id="total-paid">₹0</span> / <span class="text-gray-400 font-normal">1,20,000</span></span>
           </div>
         </div>
       </div>
 
       <div class="lg:col-span-3 space-y-6">
-        
         <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
           <h2 class="text-base font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2">Next Party Planning Poll</h2>
-          <p class="text-xs text-gray-400 mb-4">Current Vote Leader:</p>
-          
           <div class="space-y-3">
-            <div>
-              <div class="w-full bg-emerald-50 rounded-xl p-2.5 border border-emerald-200/60 flex justify-between items-center text-xs">
-                <span class="font-semibold text-emerald-900">High Tea at Park Hyatt</span>
-                <span class="text-emerald-700 font-bold">62%</span>
-              </div>
-            </div>
-            <div>
-              <div class="w-full bg-rose-50/50 rounded-xl p-2.5 border border-rose-100 flex justify-between items-center text-xs">
-                <span class="font-medium text-rose-900">High Tea | Hyatt Gachibowli</span>
-                <span class="text-rose-600 font-semibold">38%</span>
-              </div>
+            <div class="w-full bg-emerald-50 rounded-xl p-2.5 border border-emerald-200/60 flex justify-between items-center text-xs">
+              <span class="font-semibold text-emerald-900">High Tea at Park Hyatt</span>
+              <span class="text-emerald-700 font-bold">62%</span>
             </div>
           </div>
         </div>
-
-        <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
-          <h2 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Upcoming B'days</h2>
-          <div class="flex items-center space-x-3 bg-stone-50 p-2.5 rounded-xl">
-            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=100" class="w-9 h-9 rounded-full object-cover border border-amber-200">
-            <div>
-              <h4 class="text-sm font-semibold text-gray-800">Lakshmi R.</h4>
-              <p class="text-xs text-amber-600 font-medium"><i class="fa-solid fa-cake-candles mr-1"></i> 11/22</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
-          <h2 class="text-base font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2">Photo Highlights</h2>
-          <div class="relative rounded-xl overflow-hidden group">
-            <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=400" class="w-full h-28 object-cover group-hover:scale-105 transition duration-300">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-2">
-              <span class="text-white text-xs font-medium">Diwali Bash '23</span>
-            </div>
-          </div>
-        </div>
-
       </div>
 
     </div>
   </main>
 
-  <script type="module">
-    // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js";
-    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+  <div id="recordModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
+      <h3 class="text-lg font-bold text-gray-900 mb-4" id="modalTitle">Add Record</h3>
+      <input type="hidden" id="memberId">
+      
+      <div class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Member Name</label>
+          <input type="text" id="memberName" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Status</label>
+          <select id="memberStatus" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
+            <option value="Paid">Paid</option>
+            <option value="Pending">Pending</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Date Paid / Text Context</label>
+          <input type="text" id="memberDate" placeholder="e.g., 11/15 or Paid 11/18 - Today!" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Amount (₹)</label>
+          <input type="number" id="memberAmount" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
+        </div>
+      </div>
 
-    // Your web app's Firebase configuration
+      <div class="flex justify-end space-x-3 mt-6">
+        <button onclick="closeModal()" class="px-4 py-2 border border-gray-200 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50">Cancel</button>
+        <button id="btnSave" class="px-4 py-2 bg-custom-green text-white rounded-xl text-sm font-medium hover:bg-opacity-90">Save Record</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getDatabase, ref, push, set, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyCqb7gAbpa3UabPU3g_YhNITuPWtWPY4KU",
       authDomain: "ak-events-2016.firebaseapp.com",
@@ -242,21 +185,101 @@
       measurementId: "G-JQDWFXYV0G"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const database = getDatabase(app);
+    const db = getDatabase(app);
+    const membersRef = ref(db, 'members');
 
-    // Dynamic Database Hook Example: 
-    // This looks at a "dashboard_data" node in your Realtime Database to update metrics dynamically
-    const dashboardRef = ref(database, 'dashboard_data');
-    onValue(dashboardRef, (snapshot) => {
+    // Render Data element lists in Realtime
+    onValue(membersRef, (snapshot) => {
+      const tbody = document.getElementById('payments-tbody');
+      tbody.innerHTML = ""; 
+      
+      let totalSum = 0;
+      let count = 0;
       const data = snapshot.val();
+
       if (data) {
-        console.log("Realtime Data Updated: ", data);
-        // Map database attributes to DOM elements here if you want live values
+        Object.keys(data).forEach((key) => {
+          count++;
+          const item = data[key];
+          const isPaid = item.status === "Paid";
+          const amountNum = parseFloat(item.amount) || 0;
+          if (isPaid) totalSum += amountNum;
+
+          const row = document.createElement('tr');
+          row.className = isPaid ? "bg-emerald-50/40 font-semibold border-y border-emerald-100/50" : "hover:bg-stone-50";
+          
+          row.innerHTML = `
+            <td class="py-3 flex items-center space-x-3 pl-2">
+              <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=0D5C46&color=fff" class="w-7 h-7 rounded-full object-cover">
+              <span>${item.name}</span>
+            </td>
+            <td class="py-3 text-center ${isPaid ? 'text-emerald-600' : 'text-amber-500'} text-base">
+              <i class="${isPaid ? 'fa-solid fa-circle-check' : 'fa-regular fa-clock text-sm'}"></i>
+            </td>
+            <td class="py-3 ${isPaid ? 'text-emerald-700' : 'text-gray-400'} text-xs">${item.date || '—'}</td>
+            <td class="py-3 text-right font-semibold ${!isPaid ? 'text-amber-600' : ''}">₹${amountNum.toLocaleString('en-IN')}</td>
+            <td class="py-3 text-center space-x-2">
+              <button onclick="editRecord('${key}', '${item.name}', '${item.status}', '${item.date || ''}', ${amountNum})" class="text-custom-green hover:text-opacity-70"><i class="fa-solid fa-pen"></i></button>
+              <button onclick="deleteRecord('${key}')" class="text-rose-600 hover:text-opacity-70"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          `;
+          tbody.appendChild(row);
+        });
+      }
+      
+      document.getElementById('member-count').innerText = `Members (${count})`;
+      document.getElementById('total-paid').innerText = `₹${totalSum.toLocaleString('en-IN')}`;
+    });
+
+    // Handle Write & Mutate Form submission 
+    document.getElementById('btnSave').addEventListener('click', () => {
+      const id = document.getElementById('memberId').value;
+      const payload = {
+        name: document.getElementById('memberName').value,
+        status: document.getElementById('memberStatus').value,
+        date: document.getElementById('memberDate').value,
+        amount: parseFloat(document.getElementById('memberAmount').value) || 0
+      };
+
+      if (!payload.name) return alert("Please specify a name.");
+
+      if (id) {
+        update(ref(db, `members/${id}`), payload).then(closeModal);
+      } else {
+        push(membersRef, payload).then(closeModal);
       }
     });
+
+    // Delete handling function mapping exposed to window scope context
+    window.deleteRecord = (id) => {
+      if (confirm("Are you sure you want to remove this ledger entry?")) {
+        remove(ref(db, `members/${id}`));
+      }
+    };
+  </script>
+
+  <script>
+    function openModal() {
+      document.getElementById('modalTitle').innerText = "Add Record";
+      document.getElementById('memberId').value = "";
+      document.getElementById('memberName').value = "";
+      document.getElementById('memberDate').value = "";
+      document.getElementById('memberAmount').value = "";
+      document.getElementById('recordModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('recordModal').style.display = 'none';
+    }
+    function editRecord(id, name, status, date, amount) {
+      document.getElementById('modalTitle').innerText = "Modify Record";
+      document.getElementById('memberId').value = id;
+      document.getElementById('memberName').value = name;
+      document.getElementById('memberStatus').value = status;
+      document.getElementById('memberDate').value = date;
+      document.getElementById('memberAmount').value = amount;
+      document.getElementById('recordModal').style.display = 'flex';
+    }
   </script>
 </body>
 </html>
