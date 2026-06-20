@@ -37,10 +37,12 @@
     </div>
 
     <div class="flex items-center space-x-4">
-      <button class="relative p-1 text-gray-200 hover:text-white">
-        <i class="fa-regular fa-bell text-lg"></i>
-        <span class="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
-      </button>
+      <select id="globalMonthSelector" onchange="window.handleMonthChange(this.value)" class="bg-emerald-800 text-white text-xs rounded-lg px-2 py-1.5 border border-emerald-600 focus:outline-none font-medium">
+        <option value="2023_11">Nov 2023</option>
+        <option value="2023_12">Dec 2023</option>
+        <option value="2024_01">Jan 2024</option>
+        <option value="2024_02">Feb 2024</option>
+      </select>
       <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100" class="w-8 h-8 rounded-full border-2 border-amber-300 object-cover">
     </div>
   </nav>
@@ -48,11 +50,14 @@
   <main class="max-w-7xl mx-auto px-4 py-8">
     
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
-      <h1 class="text-2xl md:text-3xl font-bold text-gray-900">
-        Kitty Dashboard <span class="text-gray-400 font-light">|</span> <span class="font-medium text-gray-700" id="dashboard-subtitle">Gems of Hyderabad</span>
-      </h1>
+      <div>
+        <h1 class="text-2xl md:text-3xl font-bold text-gray-900">
+          Kitty Dashboard <span class="text-gray-400 font-light">|</span> <span class="font-medium text-gray-700" id="dashboard-subtitle">Gems of Hyderabad</span>
+        </h1>
+        <p class="text-xs text-amber-700 font-medium mt-1">Currently Viewing: <span id="currentSelectedMonthText" class="underline font-bold">Nov 2023</span></p>
+      </div>
       <button onclick="window.openModal()" class="bg-custom-green hover:bg-opacity-90 text-white font-semibold py-2.5 px-5 rounded-xl transition text-sm flex items-center shadow-sm">
-        <i class="fa-solid fa-plus mr-2"></i> Add New Record
+        <i class="fa-solid fa-plus mr-2"></i> Add/Edit Payment
       </button>
     </div>
 
@@ -62,27 +67,15 @@
         <div class="lg:col-span-3 space-y-6">
           <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow relative overflow-hidden">
             <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-2">
-              <h2 class="text-base font-bold text-gray-900">Next Party Info</h2>
-              <button onclick="window.openPartyModal()" class="text-xs text-custom-green hover:underline font-medium"><i class="fa-solid fa-pen mr-1"></i>Edit Info</button>
+              <h2 class="text-base font-bold text-gray-900">Hosting Info</h2>
+              <button onclick="window.openPartyModal()" class="text-xs text-custom-green hover:underline font-medium"><i class="fa-solid fa-pen mr-1"></i>Edit</button>
             </div>
             <div class="space-y-3 text-sm">
               <div class="flex justify-between"><span class="text-gray-500">Date</span><span class="font-semibold text-right" id="display-party-date">Sat, Nov 18, 2023</span></div>
-              <div class="flex justify-between"><span class="text-gray-500">Host</span><span class="font-semibold text-right text-custom-green" id="display-party-host">Megha Sharma</span></div>
+              <div class="flex justify-between"><span class="text-gray-500">Host Member</span><span class="font-semibold text-right text-custom-green" id="display-party-host">Megha Sharma</span></div>
               <div class="flex justify-between items-start">
                 <span class="text-gray-500">Location</span>
                 <span class="font-semibold text-right max-w-[150px]" id="display-party-loc">The Glasshouse, Jubilee Hills</span>
-              </div>
-            </div>
-            <button class="w-full mt-5 bg-custom-green hover:bg-opacity-90 text-white font-medium py-2.5 rounded-xl transition text-sm tracking-wide shadow-sm">RVP</button>
-          </div>
-          
-          <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
-            <h2 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Next Host Rotation</h2>
-            <div class="flex items-center space-x-3 bg-stone-50 p-2 rounded-xl">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" class="w-10 h-10 rounded-full object-cover">
-              <div>
-                <h4 class="text-sm font-semibold text-gray-800">Lakshmi Reddy</h4>
-                <p class="text-xs text-custom-green font-medium">Dec 2023</p>
               </div>
             </div>
           </div>
@@ -92,10 +85,10 @@
 
         <div class="lg:col-span-3 space-y-6">
           <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
-            <h2 class="text-base font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2">Next Party Planning Poll</h2>
-            <div class="w-full bg-emerald-50 rounded-xl p-2.5 border border-emerald-200/60 flex justify-between items-center text-xs">
-              <span class="font-semibold text-emerald-900">High Tea at Park Hyatt</span>
-              <span class="text-emerald-700 font-bold">62%</span>
+            <h2 class="text-base font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2">Party Target</h2>
+            <div class="w-full bg-emerald-50 rounded-xl p-3 border border-emerald-200/60 flex flex-col gap-1 text-xs">
+              <span class="font-semibold text-emerald-900">Rolling Matrix Rules</span>
+              <span class="text-gray-600">Every member pays the host designated for the selected month cycle directly.</span>
             </div>
           </div>
         </div>
@@ -107,9 +100,9 @@
       <div class="max-w-4xl mx-auto" id="isolated-payments-container">
         
         <div class="bg-white rounded-2xl p-6 border border-amber-100 card-shadow" id="payments-main-card">
-          <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
-            <h2 class="text-base font-bold text-gray-900">Payment Status - Nov '23 <span class="text-sm font-normal text-gray-500">(Megha's Kitty)</span></h2>
-            <span class="text-xs bg-emerald-50 text-custom-green px-2.5 py-1 rounded-full font-semibold" id="member-count">Members (0)</span>
+          <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-4 border-b border-gray-100 pb-3 gap-2">
+            <h2 class="text-base font-bold text-gray-900">Payment Ledger - <span id="tableMonthTitle" class="text-custom-green font-semibold">Nov 2023 Cycle</span></h2>
+            <span class="text-xs bg-emerald-50 text-custom-green px-2.5 py-1 rounded-full font-semibold self-start" id="member-count">Paid: 0 / Total: 0</span>
           </div>
 
           <div class="overflow-x-auto">
@@ -117,9 +110,9 @@
               <thead>
                 <tr class="text-xs font-semibold text-gray-400 uppercase tracking-wider border-b border-gray-100">
                   <th class="pb-3 font-medium">Member</th>
-                  <th class="pb-3 font-medium text-center">Paid?</th>
+                  <th class="pb-3 font-medium text-center">Paid Status</th>
                   <th class="pb-3 font-medium">Date Paid</th>
-                  <th class="pb-3 font-medium text-right">Amount</th>
+                  <th class="pb-3 font-medium text-right">Amount Given</th>
                   <th class="pb-3 font-medium text-center">Actions</th>
                 </tr>
               </thead>
@@ -128,8 +121,8 @@
           </div>
 
           <div class="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center text-sm">
-            <span class="text-gray-500 font-medium">Collection Progress</span>
-            <span class="font-bold text-gray-900">Total Paid: <span class="text-custom-green" id="total-paid">₹0</span> / <span class="text-gray-400 font-normal">1,20,000</span></span>
+            <span class="text-gray-500 font-medium">Collected for Host</span>
+            <span class="font-bold text-gray-900">Total Received: <span class="text-custom-green" id="total-paid">₹0</span></span>
           </div>
         </div>
 
@@ -139,8 +132,8 @@
     <div id="view-schedule" class="tab-content">
       <div class="bg-white rounded-2xl p-6 border border-amber-100 card-shadow max-w-2xl mx-auto text-center py-12">
         <i class="fa-solid fa-calendar-days text-4xl text-amber-400 mb-3"></i>
-        <h3 class="text-lg font-bold text-gray-900 mb-1">Kitty Party Schedule Matrix</h3>
-        <p class="text-sm text-gray-500">Upcoming party dates, theme assignments, and reservation statuses are updated here in real-time.</p>
+        <h3 class="text-lg font-bold text-gray-900 mb-1">Monthly Rotation Schedule</h3>
+        <p class="text-sm text-gray-500">Switch months in the top dropdown menu to map hosting allocations and clear outstanding payment profiles dynamically.</p>
       </div>
     </div>
 
@@ -148,13 +141,13 @@
 
   <div id="recordModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
-      <h3 class="text-lg font-bold text-gray-900 mb-4" id="modalTitle">Add Record</h3>
+      <h3 class="text-lg font-bold text-gray-900 mb-4" id="modalTitle">Update Payment Status</h3>
       <input type="hidden" id="memberId">
       
       <div class="space-y-4">
         <div>
           <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Member Name</label>
-          <input type="text" id="memberName" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
+          <input type="text" id="memberName" placeholder="e.g., Priya Gupta" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
         </div>
         <div>
           <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Status</label>
@@ -164,12 +157,12 @@
           </select>
         </div>
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Date Paid / Context</label>
-          <input type="text" id="memberDate" placeholder="e.g., 11/15" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
+          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Date Paid</label>
+          <input type="text" id="memberDate" placeholder="e.g., 11/12" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
         </div>
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Amount (₹)</label>
-          <input type="number" id="memberAmount" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
+          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Amount Contributed (₹)</label>
+          <input type="number" id="memberAmount" placeholder="12000" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
         </div>
       </div>
 
@@ -182,14 +175,14 @@
 
   <div id="partyModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
-      <h3 class="text-lg font-bold text-gray-900 mb-4">Modify Next Party Details</h3>
+      <h3 class="text-lg font-bold text-gray-900 mb-4">Modify Selected Month Host Info</h3>
       <div class="space-y-4">
         <div>
           <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Event Date Text</label>
           <input type="text" id="inputPartyDate" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
         </div>
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Assign Host Name</label>
+          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Designated Monthly Host</label>
           <input type="text" id="inputPartyHost" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
         </div>
         <div>
@@ -208,11 +201,10 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, push, update, remove, onValue, set } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-    // Enforcing dynamic fallback logic configurations cleanly
     const firebaseConfig = {
       apiKey: "AIzaSyB6NJ0ytQbdaPDlQSo3W9jjJsekA8g1r4c",
       authDomain: "kittyparty-29c97.firebaseapp.com",
-      databaseURL: "https://kittyparty-29c97-default-rtdb.asia-southeast1.firebasedatabase.app", // Cleaned up to absolute SouthEast instance location target string explicitly
+      databaseURL: "https://kittyparty-29c97-default-rtdb.asia-southeast1.firebasedatabase.app",
       projectId: "kittyparty-29c97",
       storageBucket: "kittyparty-29c97.firebasestorage.app",
       messagingSenderId: "51479648055",
@@ -222,11 +214,97 @@
 
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    const membersRef = ref(db, 'members');
-    const partyRef = ref(db, 'next_party');
 
+    // Track state of current selected month partition context
+    let currentMonthKey = "2023_11"; 
+    let unsubscribeMembers = null;
+    let unsubscribeParty = null;
+
+    window.handleMonthChange = function(selectedMonth) {
+      currentMonthKey = selectedMonth;
+      
+      // Update targeted displays label text formatting
+      const selectorElement = document.getElementById('globalMonthSelector');
+      const selectedText = selectorElement.options[selectorElement.selectedIndex].text;
+      document.getElementById('currentSelectedMonthText').innerText = selectedText;
+      document.getElementById('tableMonthTitle').innerText = `${selectedText} Cycle`;
+
+      // Reinitialize target listeners bound to selected monthly data node paths
+      syncDatabaseForMonth();
+    };
+
+    function syncDatabaseForMonth() {
+      // Detach prior memory streams cleanly
+      if (unsubscribeMembers) unsubscribeMembers();
+      if (unsubscribeParty) unsubscribeParty();
+
+      const membersRef = ref(db, `months/${currentMonthKey}/members`);
+      const partyRef = ref(db, `months/${currentMonthKey}/party_info`);
+
+      // Stream Party hosting metadata fields
+      unsubscribeParty = onValue(partyRef, (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          document.getElementById('display-party-date').innerText = data.date || "—";
+          document.getElementById('display-party-host').innerText = data.host || "—";
+          document.getElementById('display-party-loc').innerText = data.location || "—";
+        } else {
+          // Defaults structural placeholders if blank month selected
+          document.getElementById('display-party-date').innerText = "Not Scheduled";
+          document.getElementById('display-party-host').innerText = "TBD";
+          document.getElementById('display-party-loc').innerText = "Not Decided Yet";
+        }
+      });
+
+      // Stream payment ledgers rows matching month key context
+      unsubscribeMembers = onValue(membersRef, (snapshot) => {
+        const tbody = document.getElementById('payments-tbody');
+        tbody.innerHTML = ""; 
+        let totalSum = 0;
+        let count = 0;
+        let paidCount = 0;
+        const data = snapshot.val();
+
+        if (data) {
+          Object.keys(data).forEach((key) => {
+            count++;
+            const item = data[key];
+            const isPaid = item.status === "Paid";
+            const amountNum = parseFloat(item.amount) || 0;
+            if (isPaid) {
+              totalSum += amountNum;
+              paidCount++;
+            }
+
+            const row = document.createElement('tr');
+            row.className = isPaid ? "bg-emerald-50/40 font-semibold border-y border-emerald-100/50" : "hover:bg-stone-50";
+            
+            row.innerHTML = `
+              <td class="py-3 flex items-center space-x-3 pl-2">
+                <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=0D5C46&color=fff" class="w-7 h-7 rounded-full">
+                <span>${item.name}</span>
+              </td>
+              <td class="py-3 text-center ${isPaid ? 'text-emerald-600' : 'text-amber-500'} text-base">
+                <i class="${isPaid ? 'fa-solid fa-circle-check' : 'fa-regular fa-clock text-sm'}"></i>
+              </td>
+              <td class="py-3 ${isPaid ? 'text-emerald-700' : 'text-gray-400'} text-xs">${item.date || '—'}</td>
+              <td class="py-3 text-right font-semibold ${!isPaid ? 'text-amber-600' : ''}">₹${amountNum.toLocaleString('en-IN')}</td>
+              <td class="py-3 text-center space-x-3">
+                <button onclick="window.editRecord('${key}', '${item.name}', '${item.status}', '${item.date || ''}', ${amountNum})" class="text-custom-green hover:text-opacity-70"><i class="fa-solid fa-pen"></i></button>
+                <button onclick="window.deleteRecord('${key}')" class="text-rose-600 hover:text-opacity-70"><i class="fa-solid fa-trash"></i></button>
+              </td>
+            `;
+            tbody.appendChild(row);
+          });
+        }
+        document.getElementById('member-count').innerText = `Paid: ${paidCount} / Total Members: ${count}`;
+        document.getElementById('total-paid').innerText = `₹${totalSum.toLocaleString('en-IN')}`;
+      });
+    }
+
+    // Modal windows controllers routing
     window.openModal = function() {
-      document.getElementById('modalTitle').innerText = "Add Record";
+      document.getElementById('modalTitle').innerText = "Add/Update Payment";
       document.getElementById('memberId').value = "";
       document.getElementById('memberName').value = "";
       document.getElementById('memberDate').value = "";
@@ -250,7 +328,7 @@
     };
 
     window.editRecord = function(id, name, status, date, amount) {
-      document.getElementById('modalTitle').innerText = "Modify Record";
+      document.getElementById('modalTitle').innerText = "Modify Payment Record";
       document.getElementById('memberId').value = id;
       document.getElementById('memberName').value = name;
       document.getElementById('memberStatus').value = status;
@@ -260,71 +338,24 @@
     };
 
     window.deleteRecord = function(id) {
-      if (confirm("Are you sure you want to delete this ledger row record?")) {
-        remove(ref(db, `members/${id}`)).catch(err => alert("Delete blocked: " + err.message));
+      if (confirm("Remove this member payment row entry?")) {
+        remove(ref(db, `months/${currentMonthKey}/members/${id}`));
       }
     };
 
-    onValue(partyRef, (snapshot) => {
-      const data = snapshot.val();
-      if (data) {
-        document.getElementById('display-party-date').innerText = data.date || "Sat, Nov 18, 2023";
-        document.getElementById('display-party-host').innerText = data.host || "Megha Sharma";
-        document.getElementById('display-party-loc').innerText = data.location || "The Glasshouse, Jubilee Hills";
-      }
-    });
-
+    // Save Party Host metadata changes
     document.getElementById('btnSaveParty').addEventListener('click', () => {
       const payload = {
         date: document.getElementById('inputPartyDate').value,
         host: document.getElementById('inputPartyHost').value,
         location: document.getElementById('inputPartyLoc').value
       };
-      set(partyRef, payload)
+      set(ref(db, `months/${currentMonthKey}/party_info`), payload)
         .then(window.closePartyModal)
-        .catch(err => alert("Database rejected party save: " + err.message));
+        .catch(err => alert("Error saving host details: " + err.message));
     });
 
-    onValue(membersRef, (snapshot) => {
-      const tbody = document.getElementById('payments-tbody');
-      tbody.innerHTML = ""; 
-      let totalSum = 0;
-      let count = 0;
-      const data = snapshot.val();
-
-      if (data) {
-        Object.keys(data).forEach((key) => {
-          count++;
-          const item = data[key];
-          const isPaid = item.status === "Paid";
-          const amountNum = parseFloat(item.amount) || 0;
-          if (isPaid) totalSum += amountNum;
-
-          const row = document.createElement('tr');
-          row.className = isPaid ? "bg-emerald-50/40 font-semibold border-y border-emerald-100/50" : "hover:bg-stone-50";
-          
-          row.innerHTML = `
-            <td class="py-3 flex items-center space-x-3 pl-2">
-              <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=0D5C46&color=fff" class="w-7 h-7 rounded-full">
-              <span>${item.name}</span>
-            </td>
-            <td class="py-3 text-center ${isPaid ? 'text-emerald-600' : 'text-amber-500'} text-base">
-              <i class="${isPaid ? 'fa-solid fa-circle-check' : 'fa-regular fa-clock text-sm'}"></i>
-            </td>
-            <td class="py-3 ${isPaid ? 'text-emerald-700' : 'text-gray-400'} text-xs">${item.date || '—'}</td>
-            <td class="py-3 text-right font-semibold ${!isPaid ? 'text-amber-600' : ''}">₹${amountNum.toLocaleString('en-IN')}</td>
-            <td class="py-3 text-center space-x-3">
-              <button onclick="window.editRecord('${key}', '${item.name}', '${item.status}', '${item.date || ''}', ${amountNum})" class="text-custom-green hover:text-opacity-70"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="window.deleteRecord('${key}')" class="text-rose-600 hover:text-opacity-70"><i class="fa-solid fa-trash"></i></button>
-            </td>
-          `;
-          tbody.appendChild(row);
-        });
-      }
-      document.getElementById('member-count').innerText = `Members (${count})`;
-      document.getElementById('total-paid').innerText = `₹${totalSum.toLocaleString('en-IN')}`;
-    });
-
+    // Save/Update member payment ledger entry
     document.getElementById('btnSave').addEventListener('click', () => {
       const id = document.getElementById('memberId').value;
       const payload = {
@@ -334,18 +365,18 @@
         amount: parseFloat(document.getElementById('memberAmount').value) || 0
       };
 
-      if (!payload.name) return alert("Please clarify a profile name.");
+      if (!payload.name) return alert("Please specify a member name.");
 
+      const targetRef = ref(db, `months/${currentMonthKey}/members`);
       if (id) {
-        update(ref(db, `members/${id}`), payload)
-          .then(window.closeModal)
-          .catch(err => alert("Database rejected update request: " + err.message));
+        update(ref(db, `months/${currentMonthKey}/members/${id}`), payload).then(window.closeModal);
       } else {
-        push(membersRef, payload)
-          .then(window.closeModal)
-          .catch(err => alert("Database rejected append request: " + err.message));
+        push(targetRef, payload).then(window.closeModal);
       }
     });
+
+    // Run active dynamic listeners mapping on page initial trace
+    syncDatabaseForMonth();
   </script>
 
   <script>
@@ -366,14 +397,11 @@
       if (targetTabId === 'home') {
         document.getElementById('shared-payments-card-container').appendChild(liveCard);
         document.getElementById('view-home').classList.add('active');
-        document.getElementById('dashboard-subtitle').innerText = "Gems of Hyderabad";
       } else if (targetTabId === 'payments') {
         document.getElementById('isolated-payments-container').appendChild(liveCard);
         document.getElementById('view-payments').classList.add('active');
-        document.getElementById('dashboard-subtitle').innerText = "Collection Ledger";
       } else if (targetTabId === 'schedule') {
         document.getElementById('view-schedule').classList.add('active');
-        document.getElementById('dashboard-subtitle').innerText = "Event Timeline Planner";
       }
     };
   </script>
