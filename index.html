@@ -4,7 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gems of Hyderabad: Kitty Tracker</title>
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -15,10 +17,15 @@
     .bg-custom-green { background-color: #0d5c46; }
     .text-custom-green { color: #0d5c46; }
     .card-shadow { box-shadow: 0 4px 20px rgba(13, 92, 70, 0.05); }
+    
+    /* Smooth tab switching style helper */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
   </style>
 </head>
 <body class="text-gray-800">
 
+  <!-- Navigation Bar -->
   <nav class="bg-custom-green text-white px-6 py-3 flex justify-between items-center shadow-md">
     <div class="flex items-center space-x-2">
       <div class="bg-gradient-to-tr from-amber-400 to-yellow-200 p-1.5 rounded-full text-custom-green font-bold text-sm">
@@ -27,13 +34,11 @@
       <span class="text-xl font-semibold tracking-wide">friendly</span>
     </div>
     
-    <div class="hidden md:flex space-x-8 font-medium text-sm text-gray-200">
-      <a href="#" class="text-amber-300 border-b-2 border-amber-300 pb-1">Home</a>
-      <a href="#" class="hover:text-amber-200 transition">Members</a>
-      <a href="#" class="hover:text-amber-200 transition">Schedule</a>
-      <a href="#" class="hover:text-amber-200 transition">Payments</a>
-      <a href="#" class="hover:text-amber-200 transition">Gallery</a>
-      <a href="#" class="hover:text-amber-200 transition">Polls</a>
+    <!-- Working Navigation Tabs -->
+    <div class="hidden md:flex space-x-8 font-medium text-sm text-gray-200" id="nav-tabs">
+      <button onclick="switchTab('home')" id="tab-btn-home" class="text-amber-300 border-b-2 border-amber-300 pb-1 focus:outline-none transition">Home</button>
+      <button onclick="switchTab('payments')" id="tab-btn-payments" class="hover:text-amber-200 pb-1 focus:outline-none transition">Payments</button>
+      <button onclick="switchTab('schedule')" id="tab-btn-schedule" class="hover:text-amber-200 pb-1 focus:outline-none transition">Schedule</button>
     </div>
 
     <div class="flex items-center space-x-4">
@@ -45,54 +50,75 @@
     </div>
   </nav>
 
+  <!-- Main Content Wrapper -->
   <main class="max-w-7xl mx-auto px-4 py-8">
     
+    <!-- Dashboard Header Header UI -->
     <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
       <h1 class="text-2xl md:text-3xl font-bold text-gray-900">
-        Kitty Dashboard <span class="text-gray-400 font-light">|</span> <span class="font-medium text-gray-700">Gems of Hyderabad</span>
+        Kitty Dashboard <span class="text-gray-400 font-light">|</span> <span class="font-medium text-gray-700" id="dashboard-subtitle">Gems of Hyderabad</span>
       </h1>
-      <button onclick="openModal()" class="bg-custom-green hover:bg-opacity-90 text-white font-semibold py-2.5 px-5 rounded-xl transition text-sm flex items-center shadow-sm">
+      <button id="addRecordGlobalBtn" class="bg-custom-green hover:bg-opacity-90 text-white font-semibold py-2.5 px-5 rounded-xl transition text-sm flex items-center shadow-sm">
         <i class="fa-solid fa-plus mr-2"></i> Add New Record
       </button>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-      
-      <div class="lg:col-span-3 space-y-6">
-        <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow relative overflow-hidden">
-          <h2 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Next Party Info</h2>
-          <div class="space-y-3 text-sm">
-            <div class="flex justify-between"><span class="text-gray-500">Date</span><span class="font-semibold text-right">Sat, Nov 18, 2023</span></div>
-            <div class="flex justify-between"><span class="text-gray-500">Host</span><span class="font-semibold text-right text-custom-green">Megha Sharma</span></div>
-            <div class="flex justify-between items-start">
-              <span class="text-gray-500">Location</span>
-              <span class="font-semibold text-right max-w-[150px]">The Glasshouse, Jubilee Hills</span>
+    <!-- VIEW 1: HOME TAB (Full Grid View matching image_b07f71.jpg) -->
+    <div id="view-home" class="tab-content active">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Next Party Info Card -->
+        <div class="lg:col-span-3 space-y-6">
+          <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow relative overflow-hidden">
+            <h2 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Next Party Info</h2>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between"><span class="text-gray-500">Date</span><span class="font-semibold text-right">Sat, Nov 18, 2023</span></div>
+              <div class="flex justify-between"><span class="text-gray-500">Host</span><span class="font-semibold text-right text-custom-green">Megha Sharma</span></div>
+              <div class="flex justify-between items-start">
+                <span class="text-gray-500">Location</span>
+                <span class="font-semibold text-right max-w-[150px]">The Glasshouse, Jubilee Hills</span>
+              </div>
             </div>
+            <button class="w-full mt-5 bg-custom-green hover:bg-opacity-90 text-white font-medium py-2.5 rounded-xl transition text-sm tracking-wide shadow-sm">RVP</button>
           </div>
-          <button class="w-full mt-5 bg-custom-green hover:bg-opacity-90 text-white font-medium py-2.5 rounded-xl transition text-sm tracking-wide shadow-sm">
-            RVP
-          </button>
-        </div>
-
-        <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
-          <h2 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Next Host Rotation</h2>
-          <div class="space-y-4">
-            <div>
-              <p class="text-xs text-gray-400 font-medium mb-2">Next in Line</p>
-              <div class="flex items-center space-x-3 bg-stone-50 p-2 rounded-xl">
-                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" class="w-10 h-10 rounded-full object-cover border border-amber-200">
-                <div>
-                  <h4 class="text-sm font-semibold text-gray-800">Lakshmi Reddy</h4>
-                  <p class="text-xs text-custom-green font-medium">Dec 2023</p>
-                </div>
+          
+          <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
+            <h2 class="text-base font-bold text-gray-900 mb-4 border-b border-gray-100 pb-2">Next Host Rotation</h2>
+            <div class="flex items-center space-x-3 bg-stone-50 p-2 rounded-xl">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=100" class="w-10 h-10 rounded-full object-cover">
+              <div>
+                <h4 class="text-sm font-semibold text-gray-800">Lakshmi Reddy</h4>
+                <p class="text-xs text-custom-green font-medium">Dec 2023</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="lg:col-span-6">
-        <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow h-full">
+        <!-- Shared Payments Table Panel Grid Component -->
+        <div class="lg:col-span-6" id="shared-payments-card-container">
+          <!-- Handled automatically via DOM migration placement rules inside switchTab engine -->
+        </div>
+
+        <!-- Right Side Planning Widgets -->
+        <div class="lg:col-span-3 space-y-6">
+          <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
+            <h2 class="text-base font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2">Next Party Planning Poll</h2>
+            <div class="w-full bg-emerald-50 rounded-xl p-2.5 border border-emerald-200/60 flex justify-between items-center text-xs">
+              <span class="font-semibold text-emerald-900">High Tea at Park Hyatt</span>
+              <span class="text-emerald-700 font-bold">62%</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VIEW 2: PAYMENTS TAB VIEW (Isolated Focus View) -->
+    <div id="view-payments" class="tab-content">
+      <div class="max-w-4xl mx-auto" id="isolated-payments-container">
+        
+        <!-- Live Payments Data Render Card Block -->
+        <div class="bg-white rounded-2xl p-6 border border-amber-100 card-shadow" id="payments-main-card">
           <div class="flex justify-between items-center mb-4 border-b border-gray-100 pb-3">
             <h2 class="text-base font-bold text-gray-900">Payment Status - Nov '23 <span class="text-sm font-normal text-gray-500">(Megha's Kitty)</span></h2>
             <span class="text-xs bg-emerald-50 text-custom-green px-2.5 py-1 rounded-full font-semibold" id="member-count">Members (0)</span>
@@ -110,7 +136,8 @@
                 </tr>
               </thead>
               <tbody id="payments-tbody" class="divide-y divide-gray-50 font-medium text-gray-700">
-                </tbody>
+                <!-- Live Ledger Rows Inserted Here -->
+              </tbody>
             </table>
           </div>
 
@@ -119,23 +146,22 @@
             <span class="font-bold text-gray-900">Total Paid: <span class="text-custom-green" id="total-paid">₹0</span> / <span class="text-gray-400 font-normal">1,20,000</span></span>
           </div>
         </div>
-      </div>
 
-      <div class="lg:col-span-3 space-y-6">
-        <div class="bg-white rounded-2xl p-5 border border-amber-100 card-shadow">
-          <h2 class="text-base font-bold text-gray-900 mb-3 border-b border-gray-100 pb-2">Next Party Planning Poll</h2>
-          <div class="space-y-3">
-            <div class="w-full bg-emerald-50 rounded-xl p-2.5 border border-emerald-200/60 flex justify-between items-center text-xs">
-              <span class="font-semibold text-emerald-900">High Tea at Park Hyatt</span>
-              <span class="text-emerald-700 font-bold">62%</span>
-            </div>
-          </div>
-        </div>
       </div>
-
     </div>
+
+    <!-- VIEW 3: SCHEDULE TAB VIEW -->
+    <div id="view-schedule" class="tab-content">
+      <div class="bg-white rounded-2xl p-6 border border-amber-100 card-shadow max-w-2xl mx-auto text-center py-12">
+        <i class="fa-solid fa-calendar-days text-4xl text-amber-400 mb-3"></i>
+        <h3 class="text-lg font-bold text-gray-900 mb-1">Kitty Party Schedule Matrix</h3>
+        <p class="text-sm text-gray-500">Upcoming party dates, theme assignments, and reservation statuses are updated here in real-time.</p>
+      </div>
+    </div>
+
   </main>
 
+  <!-- Form Dialog Modal Overlay -->
   <div id="recordModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center p-4 z-50">
     <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl relative">
       <h3 class="text-lg font-bold text-gray-900 mb-4" id="modalTitle">Add Record</h3>
@@ -154,8 +180,8 @@
           </select>
         </div>
         <div>
-          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Date Paid / Text Context</label>
-          <input type="text" id="memberDate" placeholder="e.g., 11/15 or Paid 11/18" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
+          <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Date Paid / Context</label>
+          <input type="text" id="memberDate" placeholder="e.g., 11/15" class="w-full border border-gray-200 rounded-xl p-2.5 text-sm focus:outline-none focus:border-custom-green">
         </div>
         <div>
           <label class="block text-xs font-semibold text-gray-500 uppercase mb-1">Amount (₹)</label>
@@ -164,17 +190,17 @@
       </div>
 
       <div class="flex justify-end space-x-3 mt-6">
-        <button onclick="closeModal()" class="px-4 py-2 border border-gray-200 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50">Cancel</button>
+        <button id="btnCancel" class="px-4 py-2 border border-gray-200 rounded-xl text-sm font-medium text-gray-600 hover:bg-gray-50">Cancel</button>
         <button id="btnSave" class="px-4 py-2 bg-custom-green text-white rounded-xl text-sm font-medium hover:bg-opacity-90">Save Record</button>
       </div>
     </div>
   </div>
 
+  <!-- Unified Application Script Setup Logic Wrapper -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getDatabase, ref, push, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-    // Your freshly provided configuration properties mapping
     const firebaseConfig = {
       apiKey: "AIzaSyB6NJ0ytQbdaPDlQSo3W9jjJsekA8g1r4c",
       authDomain: "kittyparty-29c97.firebaseapp.com",
@@ -186,11 +212,16 @@
       measurementId: "G-Q4HCX2PSYJ"
     };
 
+    // Safely initialize application instances
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     const membersRef = ref(db, 'members');
 
-    // Realtime UI Listener
+    // Attach Event Listeners to ensure elements respond instantly
+    document.getElementById('addRecordGlobalBtn').addEventListener('click', openModal);
+    document.getElementById('btnCancel').addEventListener('click', closeModal);
+
+    // Active Database Sync Realtime Stream Hook
     onValue(membersRef, (snapshot) => {
       const tbody = document.getElementById('payments-tbody');
       tbody.innerHTML = ""; 
@@ -212,7 +243,7 @@
           
           row.innerHTML = `
             <td class="py-3 flex items-center space-x-3 pl-2">
-              <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=0D5C46&color=fff" class="w-7 h-7 rounded-full object-cover">
+              <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(item.name)}&background=0D5C46&color=fff" class="w-7 h-7 rounded-full">
               <span>${item.name}</span>
             </td>
             <td class="py-3 text-center ${isPaid ? 'text-emerald-600' : 'text-amber-500'} text-base">
@@ -221,11 +252,31 @@
             <td class="py-3 ${isPaid ? 'text-emerald-700' : 'text-gray-400'} text-xs">${item.date || '—'}</td>
             <td class="py-3 text-right font-semibold ${!isPaid ? 'text-amber-600' : ''}">₹${amountNum.toLocaleString('en-IN')}</td>
             <td class="py-3 text-center space-x-2">
-              <button onclick="editRecord('${key}', '${item.name}', '${item.status}', '${item.date || ''}', ${amountNum})" class="text-custom-green hover:text-opacity-70"><i class="fa-solid fa-pen"></i></button>
-              <button onclick="deleteRecord('${key}')" class="text-rose-600 hover:text-opacity-70"><i class="fa-solid fa-trash"></i></button>
+              <button data-id="${key}" data-name="${item.name}" data-status="${item.status}" data-date="${item.date || ''}" data-amount="${amountNum}" class="btn-edit-action text-custom-green hover:text-opacity-70"><i class="fa-solid fa-pen"></i></button>
+              <button data-id="${key}" class="btn-delete-action text-rose-600 hover:text-opacity-70"><i class="fa-solid fa-trash"></i></button>
             </td>
           `;
           tbody.appendChild(row);
+        });
+
+        // Intercept Dynamic Buttons cleanly
+        document.querySelectorAll('.btn-edit-action').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const target = btn;
+            editRecord(
+              target.getAttribute('data-id'),
+              target.getAttribute('data-name'),
+              target.getAttribute('data-status'),
+              target.getAttribute('data-date'),
+              target.getAttribute('data-amount')
+            );
+          });
+        });
+
+        document.querySelectorAll('.btn-delete-action').forEach(btn => {
+          btn.addEventListener('click', () => {
+            deleteRecord(btn.getAttribute('data-id'));
+          });
         });
       }
       
@@ -233,7 +284,7 @@
       document.getElementById('total-paid').innerText = `₹${totalSum.toLocaleString('en-IN')}`;
     });
 
-    // Form submission processing (Add & Modify)
+    // Save and Update logic execution processing
     document.getElementById('btnSave').addEventListener('click', () => {
       const id = document.getElementById('memberId').value;
       const payload = {
@@ -243,7 +294,7 @@
         amount: parseFloat(document.getElementById('memberAmount').value) || 0
       };
 
-      if (!payload.name) return alert("Please specify a name.");
+      if (!payload.name) return alert("Please clarify a profile name.");
 
       if (id) {
         update(ref(db, `members/${id}`), payload).then(closeModal);
@@ -252,15 +303,13 @@
       }
     });
 
-    // Delete context tracking exposure
-    window.deleteRecord = (id) => {
-      if (confirm("Are you sure you want to remove this ledger entry?")) {
+    function deleteRecord(id) {
+      if (confirm("Are you sure you want to drop this ledger record entry?")) {
         remove(ref(db, `members/${id}`));
       }
-    };
-  </script>
+    }
 
-  <script>
+    // Modal view display operations
     function openModal() {
       document.getElementById('modalTitle').innerText = "Add Record";
       document.getElementById('memberId').value = "";
@@ -280,6 +329,43 @@
       document.getElementById('memberDate').value = date;
       document.getElementById('memberAmount').value = amount;
       document.getElementById('recordModal').style.display = 'flex';
+    }
+  </script>
+
+  <!-- Pure Frontend Dynamic Tab Layout Control Routine Engine -->
+  <script>
+    // Initialize component positions on document frame render
+    document.addEventListener("DOMContentLoaded", () => {
+      const liveCard = document.getElementById('payments-main-card');
+      document.getElementById('shared-payments-card-container').appendChild(liveCard);
+    });
+
+    function switchTab(targetTabId) {
+      // Hide all standard tab panels
+      document.querySelectorAll('.tab-content').forEach(view => view.classList.remove('active'));
+      
+      // Clear all active navigation classes from layout links
+      document.querySelectorAll('#nav-tabs button').forEach(btn => {
+        btn.className = "hover:text-amber-200 pb-1 focus:outline-none transition";
+      });
+
+      // Highlight target link selection
+      document.getElementById(`tab-btn-${targetTabId}`).className = "text-amber-300 border-b-2 border-amber-300 pb-1 focus:outline-none transition";
+      
+      const liveCard = document.getElementById('payments-main-card');
+      
+      if (targetTabId === 'home') {
+        document.getElementById('shared-payments-card-container').appendChild(liveCard);
+        document.getElementById('view-home').classList.add('active');
+        document.getElementById('dashboard-subtitle').innerText = "Gems of Hyderabad";
+      } else if (targetTabId === 'payments') {
+        document.getElementById('isolated-payments-container').appendChild(liveCard);
+        document.getElementById('view-payments').classList.add('active');
+        document.getElementById('dashboard-subtitle').innerText = "Collection Ledger";
+      } else if (targetTabId === 'schedule') {
+        document.getElementById('view-schedule').classList.add('active');
+        document.getElementById('dashboard-subtitle').innerText = "Event Timeline Planner";
+      }
     }
   </script>
 </body>
